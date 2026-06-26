@@ -8,7 +8,7 @@
   text-align: center;
   padding: 4rem 2rem;
   background-color: #1a1a1a;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/header.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('/images/header.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

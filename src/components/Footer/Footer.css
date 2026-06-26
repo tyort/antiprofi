@@ -1,6 +1,6 @@
 .app-footer {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #1f140a; /* Тёмно-коричневый, в тон картинке хедера */
+  color: #fdf5e6; /* Тёплый белый для текста */
   padding: 3rem 2rem;
   width: 100%;
   box-sizing: border-box;
@@ -43,14 +43,14 @@
 }
 
 .footer-links a {
-  color: #cccccc;
+  color: #d4c3b3;
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-  color: #ffffff;
+  color: #fdf5e6;
 }
 
 @media (max-width: 768px) {
@@ -68,16 +68,16 @@
 
 @media (prefers-color-scheme: light) {
   .app-footer {
-    background-color: #f9f9f9;
-    color: #213547;
-    border-top: 1px solid #eaeaea;
+    background-color: #faf4ec; /* Светло-бежевый, тёплый оттенок */
+    color: #3b2613; /* Тёмно-коричневый текст */
+    border-top: 1px solid #eaddce;
   }
   
   .footer-links a {
-    color: #444444;
+    color: #5a3917;
   }
   
   .footer-links a:hover {
-    color: #646cff;
+    color: #b47b44;
   }
 }
