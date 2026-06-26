@@ -1,0 +1,34 @@
+.app-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/header.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.app-slogan {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  color: #aaaaaa;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: light) {
+  /* Header text stays light because of the dark image overlay */
+}
