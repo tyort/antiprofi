@@ -27,9 +27,10 @@
 }
 
 .app-header-logo-img {
-  height: 64px;
+  height: 96px;
   width: auto;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .app-header-nav {
@@ -84,7 +85,7 @@
   }
 
   .app-header-logo-img {
-    height: 48px;
+    height: 64px;
   }
 
   .app-header-nav {

@@ -16,7 +16,7 @@ interface ProductGridProps {
 export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   return (
     <div className="product-grid-container">
-      <h1 className="product-grid-title">Наши услуги</h1>
+      <h1 className="product-grid-title">Каталог постыдных услуг</h1>
       <div className="product-grid">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
