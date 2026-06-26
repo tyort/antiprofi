@@ -1,6 +1,7 @@
 import { products } from './data/products'
 import { ProductGrid } from './components/ProductGrid/ProductGrid'
 import { Header } from './components/Header/Header'
+import { Footer } from './components/Footer/Footer'
 import './App.css'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <main className="main-content">
         <ProductGrid products={products} />
       </main>
+      <Footer />
     </>
   )
 }

@@ -1,4 +1,5 @@
 .app-header {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,6 +17,21 @@
   box-sizing: border-box;
 }
 
+.app-header-logo {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.app-header-logo-img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
 .app-title {
   margin: 0;
   font-size: 3rem;
@@ -31,4 +47,15 @@
 
 @media (prefers-color-scheme: light) {
   /* Header text stays light because of the dark image overlay */
+}
+
+@media (max-width: 768px) {
+  .app-header-logo {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .app-header-logo-img {
+    height: 48px;
+  }
 }
