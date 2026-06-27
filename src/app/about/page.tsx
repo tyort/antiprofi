@@ -33,7 +33,7 @@ export default function AboutPage() {
 
       <div style={{ marginTop: '30px', textAlign: 'center' }}>
         <Link href="/" className="about-back-link">
-          <Image src="/images/arrow-back.png" alt="Назад" width={20} height={20} className="about-back-icon" />
+          <Image src="/images/arrow-back.webp" alt="Назад" width={20} height={20} className="about-back-icon" />
           <span>Вернуться на главную</span>
         </Link>
       </div>

@@ -42,7 +42,7 @@ export const products = [
         }
       ]
     },
-    image: '/images/ugly-friend.png'
+    image: '/images/ugly-friend.webp'
   },
   {
     id: 2,
@@ -85,7 +85,7 @@ export const products = [
         }
       ]
     },
-    image: '/images/korean.png'
+    image: '/images/korean.webp'
   },
   {
     id: 3,
@@ -130,7 +130,7 @@ export const products = [
         }
       ]
     },
-    image: '/images/bad-boy.png'
+    image: '/images/bad-boy.webp'
   },
   {
     id: 4,
@@ -175,6 +175,6 @@ export const products = [
         }
       ]
     },
-    image: '/images/ex.png'
+    image: '/images/ex.webp'
   }
 ];

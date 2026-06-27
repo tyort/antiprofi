@@ -16,7 +16,7 @@ export default function ContactPage() {
       <ContactForm />
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         <Link href="/" className="contact-back-link">
-          <Image src="/images/arrow-back.png" alt="Назад" width={20} height={20} className="contact-back-icon" />
+          <Image src="/images/arrow-back.webp" alt="Назад" width={20} height={20} className="contact-back-icon" />
           <span>Вернуться на главную</span>
         </Link>
       </div>

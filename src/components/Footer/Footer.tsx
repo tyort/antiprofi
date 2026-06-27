@@ -8,7 +8,14 @@ export function Footer() {
       <div className="footer-content">
         <div className="footer-logo">
           <Link href="/" className="footer-logo-link" aria-label="На главную">
-            <Image src="/images/logo.png" alt="Логотип" width={150} height={50} className="footer-logo-img" />
+            <Image
+              src="/images/logo.webp"
+              alt="Логотип"
+              width={80}
+              height={80}
+              sizes="80px"
+              className="footer-logo-img"
+            />
           </Link>
         </div>
         <nav className="footer-nav">
