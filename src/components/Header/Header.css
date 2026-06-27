@@ -44,11 +44,29 @@
   align-items: center;
 }
 
+.app-header-logo-link {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
 .app-header-logo-img {
   height: 96px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.75));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.app-header-logo-link:hover,
+.app-header-logo-link:focus-visible {
+  transform: scale(1.06);
+}
+
+.app-header-logo-link:hover .app-header-logo-img,
+.app-header-logo-link:focus-visible .app-header-logo-img {
+  filter: brightness(0) invert(1) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.85));
 }
 
 .app-header-nav {

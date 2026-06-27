@@ -7,7 +7,9 @@ export function Footer() {
     <footer className="app-footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <Image src="/images/logo.png" alt="Логотип" width={150} height={50} className="footer-logo-img" />
+          <Link href="/" className="footer-logo-link" aria-label="На главную">
+            <Image src="/images/logo.png" alt="Логотип" width={150} height={50} className="footer-logo-img" />
+          </Link>
         </div>
         <nav className="footer-nav">
           <ul className="footer-links">
