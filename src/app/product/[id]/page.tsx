@@ -1,6 +1,7 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { products } from '../../../data/products';
 import './ProductDetails.css';
 
@@ -12,6 +13,22 @@ interface ProductDescriptionSection {
 interface ProductDescriptionStructured {
   intro: string;
   sections: ProductDescriptionSection[];
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const product = products.find((p) => p.id === Number(id));
+
+  if (!product) {
+    return {
+      title: 'Услуга не найдена - Antiprofi',
+    };
+  }
+
+  return {
+    title: `${product.name} - Antiprofi`,
+    description: typeof product.description === 'string' ? product.description : product.description.intro,
+  };
 }
 
 const renderDescription = (description: string | ProductDescriptionStructured) => {
@@ -52,7 +69,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         </Link>
       </div>
       <div className="product-details-card">
-        <img src={product.image} alt={product.name} className="product-details-image" />
+        <Image src={product.image} alt={product.name} width={800} height={400} className="product-details-image" />
         <div className="product-details-content">
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}

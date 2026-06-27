@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import './Footer.css';
 
 export function Footer() {
@@ -5,7 +6,7 @@ export function Footer() {
     <footer className="app-footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <img src="/images/logo.png" alt="Логотип" className="footer-logo-img" />
+          <Image src="/images/logo.png" alt="Логотип" width={150} height={50} className="footer-logo-img" />
         </div>
         <nav className="footer-nav">
           <ul className="footer-links">

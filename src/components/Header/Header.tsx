@@ -1,19 +1,15 @@
-'use client';
-
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Image from 'next/image';
+import { CartButton } from './CartButton';
 import './Header.css';
 
 export function Header() {
   return (
     <header className="app-header">
       <div className="app-header-logo">
-        <img src="/images/logo.png" alt="Логотип Антипрофи" className="app-header-logo-img" />
+        <Image src="/images/logo.png" alt="Логотип Антипрофи" width={150} height={50} className="app-header-logo-img" />
       </div>
       <nav className="app-header-nav">
-        <a href="#order" className="app-header-nav-link">
-          <ShoppingCartIcon fontSize="small" />
-          <span>Сделать заказ</span>
-        </a>
+        <CartButton />
       </nav>
       <h1 className="app-title">Антипрофи</h1>
       <p className="app-slogan">Мы предлагаем услуги, за которые нам немного стыдно</p>

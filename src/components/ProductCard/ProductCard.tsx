@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import './ProductCard.css';
 
 interface ProductDescriptionSection {
@@ -32,7 +33,7 @@ const renderPreviewDescription = (description: string | ProductDescriptionStruct
 export const ProductCard: React.FC<ProductCardProps> = ({ id, name, description, image }) => {
   return (
     <div className="product-card">
-      <img src={image} alt={name} className="product-card-image" />
+      <Image src={image} alt={name} width={400} height={200} className="product-card-image" />
       <div className="product-card-content">
         <h2 className="product-card-title">{name}</h2>
         {renderPreviewDescription(description)}
