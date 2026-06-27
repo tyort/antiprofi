@@ -63,8 +63,14 @@
 
 .contact-success {
   margin: 0;
-  color: #5f7a67;
-  font-size: 0.95rem;
+  color: #10b981; /* мягкий, но яркий изумрудно-зеленый */
+  font-size: 1.05rem;
+  font-weight: 600;
+  background-color: #ecfdf5;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid #d1fae5;
 }
 
 .contact-submit {

@@ -28,6 +28,7 @@ export function ContactForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSuccessMessage('');
 
     if (!formState.message.trim()) {
       setFormState((currentState) => ({
@@ -38,7 +39,6 @@ export function ContactForm() {
     }
 
     setIsSubmitting(true);
-    setSuccessMessage('');
 
     submitTimeoutRef.current = window.setTimeout(() => {
       setIsSubmitting(false);
@@ -63,7 +63,10 @@ export function ContactForm() {
           required
           placeholder="ваш@email.com"
           value={formState.email}
-          onChange={(event) => setFormState((currentState) => ({ ...currentState, email: event.target.value, error: '' }))}
+          onChange={(event) => {
+            setFormState((currentState) => ({ ...currentState, email: event.target.value, error: '' }));
+            setSuccessMessage('');
+          }}
           disabled={isSubmitting}
         />
       </div>
@@ -77,7 +80,10 @@ export function ContactForm() {
           required
           placeholder="Напишите всё, что вы о нас думаете..."
           value={formState.message}
-          onChange={(event) => setFormState((currentState) => ({ ...currentState, message: event.target.value, error: '' }))}
+          onChange={(event) => {
+            setFormState((currentState) => ({ ...currentState, message: event.target.value, error: '' }));
+            setSuccessMessage('');
+          }}
           disabled={isSubmitting}
         />
       </div>
@@ -85,7 +91,12 @@ export function ContactForm() {
       {formState.error ? <p className="contact-error">{formState.error}</p> : null}
       {successMessage ? <p className="contact-success">{successMessage}</p> : null}
 
-      <button type="submit" className="contact-submit" disabled={isSubmitting}>
+      <button 
+        type="submit" 
+        className="contact-submit" 
+        disabled={isSubmitting}
+        onClick={() => setSuccessMessage('')}
+      >
         {isSubmitting ? (
           <>
             <span className="contact-spinner" aria-hidden="true" />
