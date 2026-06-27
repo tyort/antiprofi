@@ -75,9 +75,18 @@
   backdrop-filter: blur(4px);
 }
 
+.app-header-nav-link:visited {
+  color: #ffffff;
+}
+
 .app-header-nav-link:hover {
   background-color: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.app-header-nav-link:active {
+  color: #ffffff;
 }
 
 .app-title {
