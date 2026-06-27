@@ -5,8 +5,17 @@ import '../index.css'
 import '../App.css'
 
 export const metadata = {
+  metadataBase: new URL('https://antiprofi.ru'),
   title: 'Antiprofi',
   description: 'Antiprofi Store',
+  openGraph: {
+    title: 'Antiprofi',
+    description: 'Antiprofi Store',
+    url: '/',
+    siteName: 'Antiprofi',
+    locale: 'ru_RU',
+    type: 'website',
+  },
 }
 
 const nunito = localFont({

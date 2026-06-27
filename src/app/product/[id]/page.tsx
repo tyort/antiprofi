@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${product.name} - Antiprofi`,
     description: typeof product.description === 'string' ? product.description : product.description.intro,
+    openGraph: {
+      images: [product.image],
+    },
   };
 }
 
@@ -70,7 +73,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         </Link>
       </div>
       <div className="product-details-card">
-        <Image src={product.image} alt={product.name} width={800} height={400} className="product-details-image" />
+        <Image src={product.image} alt={product.name} width={800} height={400} priority className="product-details-image" />
         <div className="product-details-content">
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}
