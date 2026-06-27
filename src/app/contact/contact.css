@@ -1,0 +1,133 @@
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.contact-title {
+  text-align: center;
+  color: #6b5f5f;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-field label {
+  font-weight: 500;
+  color: #5f5a5a;
+}
+
+.contact-input,
+.contact-textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  outline: none;
+  border-color: #b39b9b;
+  box-shadow: 0 0 0 2px rgba(179, 155, 155, 0.18);
+}
+
+.contact-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-error {
+  margin: 0;
+  color: #8b5a5a;
+  font-size: 0.95rem;
+}
+
+.contact-success {
+  margin: 0;
+  color: #5f7a67;
+  font-size: 0.95rem;
+}
+
+.contact-submit {
+  background-color: #a46f6f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.contact-submit:hover {
+  background-color: #8f5f5f;
+}
+
+.contact-submit:disabled {
+  opacity: 0.85;
+  cursor: progress;
+}
+
+.contact-submit:disabled:hover {
+  background-color: #a46f6f;
+}
+
+.contact-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contact-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  animation: contact-spin 0.8s linear infinite;
+}
+
+@keyframes contact-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #8b7d7d;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-back-icon {
+  display: block;
+}
+
+.contact-back-link:hover {
+  color: #6f6161;
+}

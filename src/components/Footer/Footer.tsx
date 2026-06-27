@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import './Footer.css';
 
@@ -10,8 +11,8 @@ export function Footer() {
         </div>
         <nav className="footer-nav">
           <ul className="footer-links">
-            <li><a href="#contact">Написать нам</a></li>
-            <li><a href="#reviews">Отзывы</a></li>
+            <li><Link href="/contact">Написать нам</Link></li>
+            <li><Link href="/contact">Отзывы</Link></li>
             <li><a href="#promotions">Акции</a></li>
             <li><a href="#events">Мероприятия</a></li>
             <li><a href="#about">О центре услуг</a></li>
