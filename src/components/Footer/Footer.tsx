@@ -17,7 +17,7 @@ export function Footer() {
             <li><Link href="/contact">Отзывы</Link></li>
             <li><a href="#promotions">Акции</a></li>
             <li><a href="#events">Мероприятия</a></li>
-            <li><a href="#about">О центре услуг</a></li>
+            <li><Link href="/about">О центре услуг</Link></li>
           </ul>
         </nav>
       </div>
