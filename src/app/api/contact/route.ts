@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       from: gmailUser,
       to: gmailUser, // Письмо придет на вашу почту
       replyTo: email,
-      subject: `Новое сообщение с сайта от: ${email}`,
+      subject: `ANTIPROFI от: ${email}`,
       text: message,
     };
 
