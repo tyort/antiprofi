@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 type ContactFormState = {
   email: string;
@@ -9,7 +9,6 @@ type ContactFormState = {
 };
 
 export function ContactForm() {
-  const submitTimeoutRef = useRef<number | null>(null);
   const [formState, setFormState] = useState<ContactFormState>({
     email: '',
     message: '',
@@ -18,15 +17,7 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    return () => {
-      if (submitTimeoutRef.current !== null) {
-        window.clearTimeout(submitTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSuccessMessage('');
 
@@ -40,15 +31,24 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    submitTimeoutRef.current = window.setTimeout(() => {
-      setIsSubmitting(false);
-      setFormState({
-        email: '',
-        message: '',
-        error: '',
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formState.email, message: formState.message }),
       });
-      setSuccessMessage('Сообщение успешно отправлено.');
-    }, 1200);
+
+      if (response.ok) {
+        setFormState({ email: '', message: '', error: '' });
+        setSuccessMessage('Сообщение успешно отправлено.');
+      } else {
+        setFormState(prev => ({ ...prev, error: 'Ошибка при отправке сообщения.' }));
+      }
+    } catch (error) {
+      setFormState(prev => ({ ...prev, error: 'Произошла сетевая ошибка.' }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
