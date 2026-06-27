@@ -12,6 +12,7 @@ export function Header() {
           alt=""
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="app-header-image"
         />
