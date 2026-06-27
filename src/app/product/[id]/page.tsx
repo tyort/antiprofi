@@ -65,7 +65,8 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
     <div className="product-details-container">
       <div className="product-details-header">
         <Link href="/" className="product-details-back-link">
-          &larr; Назад к каталогу
+          <Image src="/images/arrow-back.png" alt="Назад" width={20} height={20} className="product-details-back-icon" />
+          Назад к каталогу
         </Link>
       </div>
       <div className="product-details-card">
@@ -74,6 +75,12 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}
         </div>
+      </div>
+      <div className="product-details-footer">
+        <Link href="/" className="product-details-back-link">
+          <Image src="/images/arrow-back.png" alt="Назад" width={20} height={20} className="product-details-back-icon" />
+          Назад к каталогу
+        </Link>
       </div>
     </div>
   );
