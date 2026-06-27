@@ -7,14 +7,21 @@
               0px 1px 1px 0px rgba(0,0,0,0.14), 
               0px 1px 3px 0px rgba(0,0,0,0.12);
   overflow: hidden;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transform: translateZ(0);
+  transform-origin: center;
+  will-change: transform, box-shadow;
+  transition:
+    transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
 
 .product-card:hover {
-  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2), 
-              0px 3px 4px 0px rgba(0,0,0,0.14), 
-              0px 1px 8px 0px rgba(0,0,0,0.12);
+  transform: scale(1.02);
+  box-shadow:
+    0px 10px 24px -12px rgba(25, 118, 210, 0.28),
+    0px 6px 16px -8px rgba(25, 118, 210, 0.2),
+    0px 2px 8px 0px rgba(0, 0, 0, 0.08);
 }
 
 .product-card-image {
@@ -107,6 +114,7 @@ p.product-card-description,
   padding: 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .product-card-button {
@@ -117,9 +125,9 @@ p.product-card-description,
   box-sizing: border-box;
   background-color: transparent;
   outline: 0;
-  border: 0;
+  border: 1px solid rgba(180, 123, 68, 0.24);
   margin: 0;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 4px 5px;
   cursor: pointer;
   user-select: none;
@@ -132,10 +140,28 @@ p.product-card-description,
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   min-width: 64px;
-  color: #1976d2;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #6b4a2a;
+  background: linear-gradient(45deg, #fffaf4 0%, #f7e8d8 100%);
+  box-shadow:
+    0 2px 6px rgba(180, 123, 68, 0.10),
+    0 1px 2px rgba(255, 255, 255, 0.55) inset;
+  transition:
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .product-card-button:hover {
-  background-color: rgba(25, 118, 210, 0.04);
+  filter: brightness(1.01);
+  border-color: rgba(180, 123, 68, 0.32);
+  box-shadow:
+    0 4px 12px rgba(180, 123, 68, 0.14),
+    0 1px 2px rgba(255, 255, 255, 0.6) inset;
+  transform: translateY(-1px);
+}
+
+.product-card-button:focus-visible {
+  outline: 3px solid rgba(180, 123, 68, 0.18);
+  outline-offset: 2px;
 }
