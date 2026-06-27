@@ -1,6 +1,7 @@
 import React from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
-import { products } from '../../data/products';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import { products } from '../../../data/products';
 import './ProductDetails.css';
 
 interface ProductDescriptionSection {
@@ -35,18 +36,18 @@ const renderDescription = (description: string | ProductDescriptionStructured) =
   );
 };
 
-export const ProductDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
-    return <Navigate to="/" replace />;
+    redirect('/');
   }
 
   return (
     <div className="product-details-container">
       <div className="product-details-header">
-        <Link to="/" className="product-details-back-link">
+        <Link href="/" className="product-details-back-link">
           &larr; Назад к каталогу
         </Link>
       </div>
@@ -59,4 +60,4 @@ export const ProductDetails: React.FC = () => {
       </div>
     </div>
   );
-};
+}

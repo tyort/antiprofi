@@ -1,3 +1,5 @@
+'use client';
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './Header.css';
 

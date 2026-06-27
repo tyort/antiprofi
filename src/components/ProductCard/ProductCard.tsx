@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import './ProductCard.css';
 
 interface ProductDescriptionSection {
@@ -38,7 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, name, description,
         {renderPreviewDescription(description)}
       </div>
       <div className="product-card-actions">
-        <Link to={`/product/${id}`} className="product-card-button">
+        <Link href={`/product/${id}`} className="product-card-button">
           Подробнее
         </Link>
       </div>
