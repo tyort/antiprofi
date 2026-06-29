@@ -28,8 +28,8 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
     <div className="product-grid-container">
       <h1 className="product-grid-title">Каталог услуг</h1>
       <div className="product-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+        {products.map((product, index) => (
+          <ProductCard key={product.id} {...product} priority={index < 3} />
         ))}
       </div>
     </div>

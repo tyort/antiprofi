@@ -15,6 +15,12 @@ interface ProductDescriptionStructured {
   sections: ProductDescriptionSection[];
 }
 
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    id: product.id.toString(),
+  }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = products.find((p) => p.id === Number(id));
@@ -73,7 +79,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         </Link>
       </div>
       <div className="product-details-card">
-        <Image src={product.image} alt={product.name} width={800} height={400} priority className="product-details-image" />
+        <Image src={product.image} alt={product.name} width={800} height={400} priority sizes="(max-width: 800px) 100vw, 800px" className="product-details-image" />
         <div className="product-details-content">
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}

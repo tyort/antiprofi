@@ -18,6 +18,7 @@ interface ProductCardProps {
   name: string;
   description: string | ProductDescriptionStructured;
   image: string;
+  priority?: boolean;
 }
 
 const renderPreviewDescription = (description: string | ProductDescriptionStructured) => {
@@ -30,10 +31,18 @@ const renderPreviewDescription = (description: string | ProductDescriptionStruct
   return <p className="product-card-description">{description.intro}</p>;
 };
 
-export const ProductCard: React.FC<ProductCardProps> = ({ id, name, description, image }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ id, name, description, image, priority = false }) => {
   return (
     <div className="product-card">
-      <Image src={image} alt={name} width={400} height={200} className="product-card-image" />
+      <Image 
+        src={image} 
+        alt={name} 
+        width={400} 
+        height={200} 
+        priority={priority}
+        sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+        className="product-card-image" 
+      />
       <div className="product-card-content">
         <h2 className="product-card-title">{name}</h2>
         {renderPreviewDescription(description)}
