@@ -142,6 +142,11 @@
 }
 
 @media (max-width: 768px) {
+  .app-header {
+    padding: 3rem 1rem;
+    min-height: 300px;
+  }
+
   .app-header-logo {
     top: 1rem;
     left: 1rem;

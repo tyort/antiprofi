@@ -4,3 +4,9 @@
   padding: 2rem;
   background: linear-gradient(45deg, #ffffff 0%, #f0f4f8 100%);
 }
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 1rem 0.5rem;
+  }
+}

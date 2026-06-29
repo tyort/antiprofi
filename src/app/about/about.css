@@ -26,6 +26,7 @@
 .about-content p {
   margin-bottom: 20px;
   text-indent: 1.5em;
+  text-align: justify;
 }
 
 .about-content p:last-child {
@@ -59,8 +60,12 @@
 }
 
 @media (max-width: 600px) {
+  .about-container {
+    padding: 20px 10px;
+  }
+  
   .about-content {
-    padding: 25px;
+    padding: 20px 15px;
   }
   
   .about-title {

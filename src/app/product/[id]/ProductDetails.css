@@ -158,3 +158,18 @@ p.product-details-description,
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@media (max-width: 600px) {
+  .product-details-container {
+    padding: 10px;
+  }
+
+  .product-details-content {
+    padding: 20px 15px;
+  }
+
+  .product-details-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+}
