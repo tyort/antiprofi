@@ -3,6 +3,7 @@
   box-sizing: border-box;
   padding: 2rem;
   background: linear-gradient(45deg, #ffffff 0%, #f0f4f8 100%);
+  overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
