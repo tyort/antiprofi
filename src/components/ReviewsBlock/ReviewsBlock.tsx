@@ -88,6 +88,22 @@ export const ReviewsBlock: React.FC = () => {
     }
   };
 
+  const scrollToIndex = (index: number) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    
+    const children = Array.from(container.children[0].children) as HTMLElement[];
+    const child = children[index];
+    if (child) {
+      const containerRect = container.getBoundingClientRect();
+      const childRect = child.getBoundingClientRect();
+      
+      const scrollOffset = childRect.left - containerRect.left - (containerRect.width / 2) + (childRect.width / 2);
+      
+      container.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="reviews-section">
       <div className="reviews-header-wrapper">
@@ -109,6 +125,11 @@ export const ReviewsBlock: React.FC = () => {
                 {...review} 
                 isActive={index === activeIndex} 
                 onReadMore={() => setSelectedReview(review)}
+                onClick={() => {
+                  if (index !== activeIndex) {
+                    scrollToIndex(index);
+                  }
+                }}
               />
             ))}
           </div>

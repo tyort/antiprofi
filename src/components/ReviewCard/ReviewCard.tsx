@@ -5,9 +5,10 @@ import './ReviewCard.css';
 interface ReviewCardProps extends Review {
   isActive?: boolean;
   onReadMore?: () => void;
+  onClick?: () => void;
 }
 
-export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, avatarInitials, isActive = false, onReadMore }) => {
+export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, avatarInitials, isActive = false, onReadMore, onClick }) => {
   const [isTruncated, setIsTruncated] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +20,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, a
   }, [text, isActive]); // Re-check when card becomes active (resizes)
 
   return (
-    <div className={`review-card ${isActive ? 'active' : ''}`}>
+    <div className={`review-card ${isActive ? 'active' : ''}`} onClick={onClick}>
       <div className="review-card-header">
         <div className="review-card-avatar">
           {avatarInitials}
@@ -36,7 +37,10 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, a
           "{text}"
         </div>
         {isTruncated && (
-          <button className="review-card-read-more" onClick={onReadMore}>
+          <button className="review-card-read-more" onClick={(e) => {
+            e.stopPropagation();
+            if (onReadMore) onReadMore();
+          }}>
             Читать весь отзыв
           </button>
         )}
