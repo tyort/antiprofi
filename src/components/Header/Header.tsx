@@ -6,13 +6,12 @@ import './Header.css';
 export function Header() {
   return (
     <header className="app-header">
-      <div className="app-header-media" aria-hidden="true">
+      <div className="app-header-media">
         <Image
           src="/images/header.webp"
-          alt=""
+          alt="Антипрофи - мы предлагаем услуги, за которые нам немного стыдно"
           fill
           priority
-          fetchPriority="high"
           sizes="100vw"
           className="app-header-image"
         />

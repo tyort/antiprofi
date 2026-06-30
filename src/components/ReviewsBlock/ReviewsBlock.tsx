@@ -47,10 +47,9 @@ export const ReviewsBlock: React.FC = () => {
       const containerRect = container.getBoundingClientRect();
       const containerCenter = containerRect.left + containerRect.width / 2;
 
-      // Find the card closest to the center
       const children = Array.from(container.children[0].children) as HTMLElement[];
       let minDistance = Infinity;
-      let newActiveIndex = activeIndex;
+      let newActiveIndex = -1;
 
       children.forEach((child, index) => {
         const childRect = child.getBoundingClientRect();
@@ -62,19 +61,21 @@ export const ReviewsBlock: React.FC = () => {
         }
       });
 
-      if (newActiveIndex !== activeIndex) {
-        setActiveIndex(newActiveIndex);
+      if (newActiveIndex !== -1) {
+        setActiveIndex(prev => prev !== newActiveIndex ? newActiveIndex : prev);
       }
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
+    
     // Initialize active index after mount
-    setTimeout(handleScroll, 100);
+    const timeoutId = setTimeout(handleScroll, 100);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
     };
-  }, [activeIndex]);
+  }, []);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -162,7 +163,7 @@ export const ReviewsBlock: React.FC = () => {
               </div>
             </div>
             <div className="review-modal-text">
-              "{selectedReview.text}"
+              &quot;{selectedReview.text}&quot;
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, a
       </div>
       <div className="review-card-content">
         <div className="review-card-text" ref={textRef}>
-          "{text}"
+          &quot;{text}&quot;
         </div>
         {isTruncated && (
           <button className="review-card-read-more" onClick={(e) => {
