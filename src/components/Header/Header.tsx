@@ -15,6 +15,7 @@ export function Header() {
           fetchPriority="high"
           sizes="100vw"
           className="app-header-image"
+          style={{ objectFit: 'cover' }}
         />
       </div>
       <div className="app-header-logo">

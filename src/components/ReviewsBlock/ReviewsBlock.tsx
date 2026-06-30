@@ -43,37 +43,46 @@ export const ReviewsBlock: React.FC = () => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    let timeoutId: NodeJS.Timeout;
+
     const handleScroll = () => {
-      const containerRect = container.getBoundingClientRect();
-      const containerCenter = containerRect.left + containerRect.width / 2;
-
-      const children = Array.from(container.children[0].children) as HTMLElement[];
-      let minDistance = Infinity;
-      let newActiveIndex = -1;
-
-      children.forEach((child, index) => {
-        const childRect = child.getBoundingClientRect();
-        const childCenter = childRect.left + childRect.width / 2;
-        const distance = Math.abs(containerCenter - childCenter);
-        if (distance < minDistance) {
-          minDistance = distance;
-          newActiveIndex = index;
-        }
-      });
-
-      if (newActiveIndex !== -1) {
-        setActiveIndex(prev => prev !== newActiveIndex ? newActiveIndex : prev);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
+
+      timeoutId = setTimeout(() => {
+        const containerRect = container.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
+
+        const children = Array.from(container.children[0].children) as HTMLElement[];
+        let minDistance = Infinity;
+        let newActiveIndex = -1;
+
+        children.forEach((child, index) => {
+          const childRect = child.getBoundingClientRect();
+          const childCenter = childRect.left + childRect.width / 2;
+          const distance = Math.abs(containerCenter - childCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            newActiveIndex = index;
+          }
+        });
+
+        if (newActiveIndex !== -1) {
+          setActiveIndex(prev => prev !== newActiveIndex ? newActiveIndex : prev);
+        }
+      }, 50); // Debounce scroll event to reduce CPU load
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
     
     // Initialize active index after mount
-    const timeoutId = setTimeout(handleScroll, 100);
+    const initTimeoutId = setTimeout(handleScroll, 100);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
+      clearTimeout(initTimeoutId);
     };
   }, []);
 
