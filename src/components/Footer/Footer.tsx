@@ -21,7 +21,6 @@ export function Footer() {
         <nav className="footer-nav">
           <ul className="footer-links">
             <li><Link href="/contact">Написать нам</Link></li>
-            <li><Link href="/contact">Отзывы</Link></li>
             <li><a href="#promotions">Акции</a></li>
             <li><a href="#events">Мероприятия</a></li>
             <li><Link href="/about">О центре услуг</Link></li>

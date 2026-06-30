@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 import { reviews, Review } from '../../data/reviews';
 import './ReviewsBlock.css';
@@ -115,7 +116,7 @@ export const ReviewsBlock: React.FC = () => {
           onClick={scrollLeft} 
           aria-label="Предыдущий отзыв"
         >
-          &larr;
+          <Image src="/images/arrow.png" alt="" width={80} height={80} style={{ transform: 'scaleX(-1)' }} />
         </button>
         <div className="reviews-slider-container" ref={scrollContainerRef}>
           <div className="reviews-slider">
@@ -139,7 +140,7 @@ export const ReviewsBlock: React.FC = () => {
           onClick={scrollRight} 
           aria-label="Следующий отзыв"
         >
-          &rarr;
+          <Image src="/images/arrow.png" alt="" width={80} height={80} />
         </button>
       </div>
 
