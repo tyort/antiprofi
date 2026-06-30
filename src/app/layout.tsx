@@ -5,7 +5,7 @@ import '../index.css'
 import '../App.css'
 
 export const metadata = {
-  metadataBase: new URL('https://antiprofi.ru'),
+  metadataBase: new URL('https://anti-profi.ru'),
   title: 'Antiprofi',
   description: 'Antiprofi Store',
   openGraph: {

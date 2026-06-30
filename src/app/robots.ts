@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://antiprofi.ru/sitemap.xml',
+    sitemap: 'https://anti-profi.ru/sitemap.xml',
   };
 }
