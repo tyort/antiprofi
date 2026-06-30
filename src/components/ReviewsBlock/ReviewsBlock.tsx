@@ -23,6 +23,22 @@ export const ReviewsBlock: React.FC = () => {
   }, [selectedReview]);
 
   useEffect(() => {
+    if (!selectedReview) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedReview(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedReview]);
+
+  useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
