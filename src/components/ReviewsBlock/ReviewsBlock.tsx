@@ -2,12 +2,25 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-import { reviews } from '../../data/reviews';
+import { reviews, Review } from '../../data/reviews';
 import './ReviewsBlock.css';
 
 export const ReviewsBlock: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+
+  useEffect(() => {
+    // Lock body scroll when modal is open
+    if (selectedReview) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedReview]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -75,7 +88,12 @@ export const ReviewsBlock: React.FC = () => {
         <div className="reviews-slider-container" ref={scrollContainerRef}>
           <div className="reviews-slider">
             {reviews.map((review, index) => (
-              <ReviewCard key={review.id} {...review} isActive={index === activeIndex} />
+              <ReviewCard 
+                key={review.id} 
+                {...review} 
+                isActive={index === activeIndex} 
+                onReadMore={() => setSelectedReview(review)}
+              />
             ))}
           </div>
         </div>
@@ -87,6 +105,30 @@ export const ReviewsBlock: React.FC = () => {
           &rarr;
         </button>
       </div>
+
+      {selectedReview && (
+        <div className="review-modal-overlay" onClick={() => setSelectedReview(null)}>
+          <div className="review-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="review-modal-close" onClick={() => setSelectedReview(null)} aria-label="Закрыть">
+              &times;
+            </button>
+            <div className="review-card-header">
+              <div className="review-card-avatar">
+                {selectedReview.avatarInitials}
+              </div>
+              <div className="review-card-info">
+                <div className="review-card-name">{selectedReview.name}, {selectedReview.age}</div>
+                <div className={`review-card-badge ${selectedReview.type === 'Антипрофи' ? 'badge-antiprofi' : 'badge-customer'}`}>
+                  {selectedReview.type}
+                </div>
+              </div>
+            </div>
+            <div className="review-modal-text">
+              "{selectedReview.text}"
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

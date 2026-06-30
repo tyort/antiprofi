@@ -4,10 +4,10 @@ import './ReviewCard.css';
 
 interface ReviewCardProps extends Review {
   isActive?: boolean;
+  onReadMore?: () => void;
 }
 
-export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, avatarInitials, isActive = false }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, avatarInitials, isActive = false, onReadMore }) => {
   const [isTruncated, setIsTruncated] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -18,12 +18,8 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, a
     }
   }, [text, isActive]); // Re-check when card becomes active (resizes)
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   return (
-    <div className={`review-card ${isActive ? 'active' : ''} ${isExpanded ? 'expanded' : ''}`}>
+    <div className={`review-card ${isActive ? 'active' : ''}`}>
       <div className="review-card-header">
         <div className="review-card-avatar">
           {avatarInitials}
@@ -36,12 +32,12 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ name, age, text, type, a
         </div>
       </div>
       <div className="review-card-content">
-        <div className={`review-card-text ${isExpanded ? 'expanded' : ''}`} ref={textRef}>
+        <div className="review-card-text" ref={textRef}>
           "{text}"
         </div>
-        {(isTruncated || isExpanded) && (
-          <button className="review-card-read-more" onClick={toggleExpand}>
-            {isExpanded ? 'Скрыть' : 'Читать весь отзыв'}
+        {isTruncated && (
+          <button className="review-card-read-more" onClick={onReadMore}>
+            Читать весь отзыв
           </button>
         )}
       </div>
