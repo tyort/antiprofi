@@ -26,7 +26,7 @@ interface ProductGridProps {
 export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   return (
     <div className="product-grid-container">
-      <h1 className="product-grid-title">Каталог услуг</h1>
+      <h1 className="product-grid-title">Наши люди</h1>
       <div className="product-grid">
         {products.map((product, index) => (
           <ProductCard key={product.id} {...product} priority={index < 3} />
