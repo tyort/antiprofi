@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 
 type ContactFormState = {
   email: string;
@@ -8,14 +8,25 @@ type ContactFormState = {
   error: string;
 };
 
-export function ContactForm() {
+type ContactFormProps = {
+  initialMessage?: string;
+};
+
+export function ContactForm({ initialMessage = '' }: ContactFormProps) {
   const [formState, setFormState] = useState<ContactFormState>({
     email: '',
-    message: '',
+    message: initialMessage,
     error: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+
+  // Update message if initialMessage changes (e.g. via client-side navigation)
+  useEffect(() => {
+    if (initialMessage) {
+      setFormState(prev => ({ ...prev, message: initialMessage }));
+    }
+  }, [initialMessage]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

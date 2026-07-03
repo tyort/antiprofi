@@ -7,7 +7,7 @@
   margin-left: -2rem;
   margin-right: -2rem;
   width: calc(100% + 4rem);
-  background: linear-gradient(180deg, #f7f1e8 0%, #efe4d6 100%);
+  background: linear-gradient(45deg, #f7f1e8 0%, #f2e8db 50%, #e8d7c2 100%);
   border-top: 1px solid #e2d2be;
   border-bottom: 1px solid #e2d2be;
   box-shadow: inset 0 4px 18px rgba(107, 74, 42, 0.04);
@@ -47,9 +47,175 @@
   margin: 24px 0 0;
   max-width: 760px;
   color: #5f5146;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 1.05rem;
   line-height: 1.75;
+  text-align: justify;
 }
+
+.catalog-tags {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.catalog-tag {
+  border: 1px solid #c8ad8e;
+  background: #fff8f0;
+  color: #5a3c22;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.catalog-tag:hover {
+  border-color: #a76c38;
+  background: #f6e9da;
+}
+
+.catalog-tag--active {
+  background: #b47b44;
+  border-color: #b47b44;
+  color: #fff;
+}
+
+.catalog-selected {
+  margin-top: 10px;
+  width: min(760px, 100%);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid #ddc6ab;
+  border-radius: 16px;
+  padding: 18px 20px;
+  text-align: left;
+}
+
+.catalog-selected-title {
+  width: min(760px, 100%);
+  margin: 28px 0 0;
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5a3c22;
+  text-align: left;
+}
+
+.catalog-selected-empty {
+  margin: 12px 0 0;
+  color: #7b6a5c;
+}
+
+.catalog-selected-line {
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-selected-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #c8ad8e;
+  background: #fff8f0;
+  color: #4f3e2f;
+  border-radius: 999px;
+  padding: 6px 10px 6px 12px;
+  line-height: 1.2;
+}
+
+.catalog-selected-remove {
+  border: none;
+  background: transparent;
+  color: #8c5b2f;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.catalog-selected-remove:hover {
+  color: #6f3f12;
+}
+
+.catalog-selected-manual {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.catalog-selected-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px dashed rgba(200, 173, 142, 0.35);
+  background: rgba(255, 248, 240, 0.18);
+  color: rgba(79, 62, 47, 0.82);
+  border-radius: 0;
+  padding: 8px 14px;
+  font: inherit;
+}
+
+.catalog-selected-input::placeholder {
+  color: rgba(95, 81, 70, 0.45);
+}
+
+.catalog-selected-input:focus {
+  outline: 2px solid rgba(180, 123, 68, 0.14);
+  outline-offset: 2px;
+}
+
+.catalog-selected-add {
+  border: 1px solid #b47b44;
+  background: #b47b44;
+  color: #fff;
+  border-radius: 0;
+  padding: 8px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.catalog-selected-add:hover {
+  background: #9f6838;
+  border-color: #9f6838;
+}
+
+.catalog-selected-add:disabled {
+  cursor: not-allowed;
+  background: rgba(180, 123, 68, 0.4);
+  border-color: rgba(180, 123, 68, 0.3);
+}
+
+.catalog-selected-add:disabled:hover {
+  background: rgba(180, 123, 68, 0.4);
+  border-color: rgba(180, 123, 68, 0.3);
+}
+
+.catalog-order-button {
+  display: inline-block;
+  width: auto;
+  align-self: center;
+  margin-top: 14px;
+  border: 1px solid #5a3c22;
+  background: linear-gradient(45deg, #5a3c22 0%, #8a5a33 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 11px 18px;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.catalog-order-button:hover {
+  background: linear-gradient(45deg, #462d18 0%, #6f4320 100%);
+  border-color: #462d18;
+}
+
 
 @media (max-width: 600px) {
   .catalog-section {
@@ -68,5 +234,27 @@
     margin-top: 18px;
     font-size: 0.98rem;
     line-height: 1.65;
+  }
+
+  .catalog-tag {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .catalog-selected {
+    margin-top: 8px;
+    padding: 14px;
+  }
+
+  .catalog-selected-manual {
+    flex-direction: column;
+  }
+
+  .catalog-selected-add {
+    width: 100%;
+  }
+
+  .catalog-selected-title {
+    margin-top: 22px;
   }
 }
