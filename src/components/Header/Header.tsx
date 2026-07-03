@@ -14,6 +14,7 @@ export function Header() {
           priority
           fetchPriority="high"
           sizes="100vw"
+          quality={62}
           className="app-header-image"
           style={{ objectFit: 'cover' }}
         />

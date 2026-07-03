@@ -47,6 +47,10 @@ export const CatalogBlock: React.FC = () => {
   };
 
   const handleMakeOrder = () => {
+    if (selectedServices.length === 0) {
+      return;
+    }
+
     const servicesQuery = encodeURIComponent(JSON.stringify(selectedServices));
     router.push(`/contact?services=${servicesQuery}`);
   };
@@ -114,6 +118,7 @@ export const CatalogBlock: React.FC = () => {
           className="catalog-order-button"
           type="button"
           onClick={handleMakeOrder}
+          disabled={selectedServices.length === 0}
         >
           Сделать заказ
         </button>
