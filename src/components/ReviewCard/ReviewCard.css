@@ -1,13 +1,15 @@
 .review-card {
   background-color: #ffffff;
+  box-sizing: border-box;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-width: 300px;
-  max-width: 350px;
+  width: var(--review-card-width, 350px);
+  min-width: var(--review-card-width, 350px);
+  max-width: var(--review-card-width, 350px);
   flex: 0 0 auto;
   scroll-snap-align: center;
   border: 1px solid #eaeaea;
@@ -118,4 +120,41 @@
 
 .review-card-read-more:hover {
   text-decoration-color: #1976d2;
+}
+
+@media (max-width: 600px) {
+  .review-card {
+    margin: 0;
+    padding: 20px;
+    transform: none;
+    opacity: 1;
+    border-radius: 14px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+    scroll-snap-align: start;
+  }
+
+  .review-card.active {
+    transform: none;
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .review-card-header {
+    gap: 12px;
+  }
+
+  .review-card-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .review-card-name {
+    font-size: 1rem;
+  }
+
+  .review-card-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
 }

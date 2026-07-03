@@ -10,6 +10,19 @@ export const ReviewsBlock: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 600px)');
+    const updateMobileState = () => setIsMobile(mediaQuery.matches);
+
+    updateMobileState();
+    mediaQuery.addEventListener('change', updateMobileState);
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateMobileState);
+    };
+  }, []);
 
   useEffect(() => {
     // Lock body scroll when modal is open
@@ -52,7 +65,9 @@ export const ReviewsBlock: React.FC = () => {
 
       timeoutId = setTimeout(() => {
         const containerRect = container.getBoundingClientRect();
-        const containerCenter = containerRect.left + containerRect.width / 2;
+        const containerCenter = isMobile
+          ? containerRect.top + containerRect.height / 2
+          : containerRect.left + containerRect.width / 2;
 
         const children = Array.from(container.children[0].children) as HTMLElement[];
         let minDistance = Infinity;
@@ -60,7 +75,9 @@ export const ReviewsBlock: React.FC = () => {
 
         children.forEach((child, index) => {
           const childRect = child.getBoundingClientRect();
-          const childCenter = childRect.left + childRect.width / 2;
+          const childCenter = isMobile
+            ? childRect.top + childRect.height / 2
+            : childRect.left + childRect.width / 2;
           const distance = Math.abs(containerCenter - childCenter);
           if (distance < minDistance) {
             minDistance = distance;
@@ -84,9 +101,14 @@ export const ReviewsBlock: React.FC = () => {
       clearTimeout(timeoutId);
       clearTimeout(initTimeoutId);
     };
-  }, []);
+  }, [isMobile]);
 
   const scrollLeft = () => {
+    if (isMobile) {
+      setActiveIndex((prev) => Math.max(0, prev - 1));
+      return;
+    }
+
     if (scrollContainerRef.current) {
       // scroll to previous item, considering gap
       scrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
@@ -94,6 +116,11 @@ export const ReviewsBlock: React.FC = () => {
   };
 
   const scrollRight = () => {
+    if (isMobile) {
+      setActiveIndex((prev) => Math.min(reviews.length - 1, prev + 1));
+      return;
+    }
+
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
     }
@@ -106,11 +133,17 @@ export const ReviewsBlock: React.FC = () => {
     const children = Array.from(container.children[0].children) as HTMLElement[];
     const child = children[index];
     if (child) {
+      if (isMobile) {
+        child.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       const containerRect = container.getBoundingClientRect();
       const childRect = child.getBoundingClientRect();
-      
-      const scrollOffset = childRect.left - containerRect.left - (containerRect.width / 2) + (childRect.width / 2);
-      
+
+      const scrollOffset =
+        childRect.left - containerRect.left - (containerRect.width / 2) + (childRect.width / 2);
+
       container.scrollBy({ left: scrollOffset, behavior: 'smooth' });
     }
   };
@@ -121,37 +154,65 @@ export const ReviewsBlock: React.FC = () => {
         <h2 className="reviews-title">Отзывы</h2>
       </div>
       <div className="reviews-content-wrapper">
-        <button 
-          className={`reviews-control-btn prev-btn ${activeIndex === 0 ? 'hidden' : ''}`} 
-          onClick={scrollLeft} 
-          aria-label="Предыдущий отзыв"
-        >
-          <Image src="/images/arrow.png" alt="" width={80} height={80} style={{ transform: 'scaleX(-1)' }} />
-        </button>
-        <div className="reviews-slider-container" ref={scrollContainerRef}>
-          <div className="reviews-slider">
-            {reviews.map((review, index) => (
-              <ReviewCard 
-                key={review.id} 
-                {...review} 
-                isActive={index === activeIndex} 
-                onReadMore={() => setSelectedReview(review)}
-                onClick={() => {
-                  if (index !== activeIndex) {
-                    scrollToIndex(index);
-                  }
-                }}
+        {isMobile ? (
+          <div className="reviews-mobile-slider">
+            <button
+              className={`reviews-mobile-control-btn ${activeIndex === 0 ? 'hidden' : ''}`}
+              onClick={scrollLeft}
+              aria-label="Предыдущий отзыв"
+            >
+              <Image src="/images/arrow.png" alt="" width={56} height={56} style={{ transform: 'rotate(-90deg)' }} />
+            </button>
+            <div className="reviews-mobile-card-frame">
+              <ReviewCard
+                {...reviews[activeIndex]}
+                isActive
+                onReadMore={() => setSelectedReview(reviews[activeIndex])}
               />
-            ))}
+            </div>
+            <button
+              className={`reviews-mobile-control-btn ${activeIndex === reviews.length - 1 ? 'hidden' : ''}`}
+              onClick={scrollRight}
+              aria-label="Следующий отзыв"
+            >
+              <Image src="/images/arrow.png" alt="" width={56} height={56} style={{ transform: 'rotate(90deg)' }} />
+            </button>
           </div>
-        </div>
-        <button 
-          className={`reviews-control-btn next-btn ${activeIndex === reviews.length - 1 ? 'hidden' : ''}`} 
-          onClick={scrollRight} 
-          aria-label="Следующий отзыв"
-        >
-          <Image src="/images/arrow.png" alt="" width={80} height={80} />
-        </button>
+        ) : (
+          <>
+            <button 
+              className={`reviews-control-btn prev-btn ${activeIndex === 0 ? 'hidden' : ''}`} 
+              onClick={scrollLeft} 
+              aria-label="Предыдущий отзыв"
+            >
+              <Image src="/images/arrow.png" alt="" width={80} height={80} style={{ transform: 'scaleX(-1)' }} />
+            </button>
+            <div className="reviews-slider-container" ref={scrollContainerRef}>
+              <div className="reviews-slider">
+                {reviews.map((review, index) => (
+                  <ReviewCard 
+                    key={review.id} 
+                    {...review} 
+                    isActive={index === activeIndex} 
+                    onReadMore={() => setSelectedReview(review)}
+                    onClick={() => {
+                      if (index !== activeIndex) {
+                        scrollToIndex(index);
+                      }
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <button 
+              className={`reviews-control-btn next-btn ${activeIndex === reviews.length - 1 ? 'hidden' : ''}`} 
+              onClick={scrollRight} 
+              aria-label="Следующий отзыв"
+            >
+              <Image src="/images/arrow.png" alt="" width={80} height={80} />
+            </button>
+          </>
+        )}
       </div>
 
       {selectedReview && (
