@@ -14,7 +14,7 @@ export function Header() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={62}
+          quality={50}
           className="app-header-image"
           style={{ objectFit: 'cover' }}
         />
@@ -26,7 +26,6 @@ export function Header() {
             alt="Логотип Антипрофи"
             width={96}
             height={96}
-            priority
             sizes="96px"
             className="app-header-logo-img"
           />
