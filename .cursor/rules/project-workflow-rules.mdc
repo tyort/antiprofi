@@ -1,0 +1,10 @@
+---
+description: Project workflow rules
+alwaysApply: true
+---
+
+# Project Workflow Rules
+
+Before installing or updating dependencies in `package.json`, run `nvm use` first.
+
+This applies to commands like `npm install`, `npm add`, `npm remove`, and any other workflow that changes project packages.
