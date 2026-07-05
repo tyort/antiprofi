@@ -5,6 +5,13 @@ alwaysApply: true
 
 # Project Workflow Rules
 
-Before installing or updating dependencies in `package.json`, run `nvm use` first.
+Before installing, removing, or updating dependencies in `package.json`, you MUST run `nvm use` first in the same shell session.
 
-This applies to commands like `npm install`, `npm add`, `npm remove`, and any other workflow that changes project packages.
+Dependency-management commands are forbidden until this preflight is done:
+
+1. Run `nvm use`
+2. Run `node -v` and ensure the active version matches the project requirement from `package.json`
+
+This applies to commands like `npm install`, `npm add`, `npm remove`, `npm update`, `npm ci`, and any other workflow that changes project packages.
+
+If `nvm use` was not run first, STOP and run it before continuing.

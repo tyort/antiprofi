@@ -1,7 +1,6 @@
 import localFont from 'next/font/local'
 import { Header } from '../components/Header/Header'
 import { Footer } from '../components/Footer/Footer'
-import { TelegramChatWidget } from '../components/TelegramChatWidget/TelegramChatWidget'
 import '../index.css'
 import '../App.css'
 
@@ -48,7 +47,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <TelegramChatWidget />
       </body>
     </html>
   )
