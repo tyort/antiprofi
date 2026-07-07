@@ -9,7 +9,7 @@ export function Header() {
       <div className="app-header-media">
         <Image
           src="/images/header.webp"
-          alt="Антипрофи - мы предлагаем услуги, за которые нам немного стыдно"
+          alt="Антипрофи - берёмся за заказы, которые другим кажутся странными"
           fill
           priority
           fetchPriority="high"
@@ -36,7 +36,7 @@ export function Header() {
       </nav>
       <div className="app-header-content">
         <div className="app-title">Антипрофи</div>
-        <p className="app-slogan">Мы предлагаем услуги, за которые нам немного стыдно</p>
+        <p className="app-slogan">Берёмся за заказы, которые другим кажутся странными</p>
       </div>
     </header>
   );
