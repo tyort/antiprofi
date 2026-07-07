@@ -44,6 +44,22 @@ export default function RootLayout({
     <html lang="ru" className={nunito.variable}>
       <body>
         <Header />
+        
+        <Script id="schema-org-organization" type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            'name': 'Antiprofi',
+            'url': 'https://anti-profi.ru',
+            'logo': 'https://anti-profi.ru/images/logo.png',
+            'description': 'Агентство нестандартных услуг в Москве: актеры напрокат и выездной кейтеринг.',
+            'areaServed': {
+              '@type': 'City',
+              'name': 'Москва'
+            }
+          })
+        }} />
+
         <main className="main-content">
           {children}
         </main>
