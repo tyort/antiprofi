@@ -38,6 +38,41 @@
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.footer-city, .footer-schedule {
+  margin: 0;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.footer-social-icon {
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-social-icon:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
 .footer-logo-link:hover,
 .footer-logo-link:focus-visible {
   transform: scale(1.06);
