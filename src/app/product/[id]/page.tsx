@@ -15,6 +15,8 @@ interface ProductDescriptionStructured {
   sections: ProductDescriptionSection[];
 }
 
+const PIGODI_PRODUCT_ID = 2;
+
 export async function generateStaticParams() {
   return products.map((product) => ({
     id: product.id.toString(),
@@ -28,6 +30,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!product) {
     return {
       title: 'Услуга не найдена - Antiprofi',
+    };
+  }
+
+  if (product.id === PIGODI_PRODUCT_ID) {
+    return {
+      title: 'Пигоди на заказ - Мастер пигоди и мантов | Antiprofi',
+      description: 'Пигоди на заказ от корейской бабушки: домашние пигоди и манты, приготовление на вашей кухне по согласованному меню.',
+      keywords: ['пигоди', 'пигоди на заказ', 'домашние пигоди', 'корейская кухня', 'манты на заказ'],
+      alternates: {
+        canonical: '/product/2',
+      },
+      openGraph: {
+        title: 'Пигоди на заказ - Мастер пигоди и мантов | Antiprofi',
+        description: 'Домашние пигоди и манты на заказ: приготовление на вашей кухне, аутентичный вкус корейской кухни.',
+        url: '/product/2',
+        images: [product.image],
+        type: 'article',
+      },
     };
   }
 
@@ -70,8 +90,30 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
     redirect('/');
   }
 
+  const isPigodiPage = product.id === PIGODI_PRODUCT_ID;
+  const seoStructuredData = isPigodiPage
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Пигоди на заказ',
+        description: 'Услуга приготовления домашних пигоди и мантов на территории заказчика.',
+        areaServed: 'RU',
+        provider: {
+          '@type': 'Organization',
+          name: 'Antiprofi',
+        },
+        url: 'https://anti-profi.ru/product/2',
+      }
+    : null;
+
   return (
     <div className="product-details-container">
+      {seoStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(seoStructuredData) }}
+        />
+      )}
       <div className="product-details-header">
         <Link href="/" className="product-details-back-link">
           <Image src="/images/arrow-back.webp" alt="Назад" width={20} height={20} className="product-details-back-icon" />
@@ -83,6 +125,19 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         <div className="product-details-content">
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}
+          {isPigodiPage && (
+            <section className="product-details-seo-block" aria-label="Информация о пигоди на заказ">
+              <h2>Пигоди на заказ</h2>
+              <p>
+                Эта услуга подходит тем, кто ищет домашние пигоди с аутентичным вкусом корейской кухни.
+                Приготовление проходит на вашей кухне, с учетом предпочтений по начинке и объему.
+              </p>
+              <p>
+                Если вам нужны пигоди на заказ для семьи, гостей или мероприятия, мы заранее
+                согласуем меню, список продуктов и формат подачи.
+              </p>
+            </section>
+          )}
         </div>
       </div>
       <div className="product-details-footer">

@@ -159,6 +159,31 @@ p.product-details-description,
   background-position: center;
 }
 
+.product-details-seo-block {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.product-details-seo-block h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.product-details-seo-block p {
+  margin: 0 0 10px 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.74);
+}
+
+.product-details-seo-block p:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 600px) {
   .product-details-container {
     padding: 10px;
