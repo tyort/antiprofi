@@ -7,8 +7,8 @@ import '../App.css'
 
 export const metadata = {
   metadataBase: new URL('https://anti-profi.ru'),
-  title: 'Antiprofi',
-  description: 'Antiprofi Store',
+  title: 'Antiprofi — Агентство нестандартных услуг в Москве (актеры напрокат, кейтеринг)',
+  description: 'Услуги актеров напрокат для встреч в Москве (фейковый парень, неудобная подруга) и домашний кейтеринг корейской кухни (пигоди, пьянсе на заказ, манты).',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
