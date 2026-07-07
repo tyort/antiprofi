@@ -126,19 +126,6 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         <div className="product-details-content">
           <h1 className="product-details-title">{product.name}</h1>
           {renderDescription(product.description)}
-          {isPigodiPage && (
-            <section className="product-details-seo-block" aria-label="Информация о пигоди на заказ">
-              <h2>Пигоди на заказ</h2>
-              <p>
-                Эта услуга подходит тем, кто ищет домашние пигоди и пьянсе с аутентичным вкусом
-                корейской кухни. Приготовление проходит на вашей кухне, с учетом предпочтений по начинке и объему.
-              </p>
-              <p>
-                Если вам нужны пигоди на заказ для семьи, гостей или мероприятия, мы заранее согласуем
-                меню, список продуктов и формат подачи, включая кейтеринг для небольших событий.
-              </p>
-            </section>
-          )}
         </div>
       </div>
       <div className="product-details-footer">
