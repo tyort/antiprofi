@@ -2,6 +2,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import { Header } from '../components/Header/Header'
 import { Footer } from '../components/Footer/Footer'
+import { NeuralBackground } from '../components/NeuralBackground'
 import '../index.css'
 import '../App.css'
 
@@ -43,27 +44,30 @@ export default function RootLayout({
   return (
     <html lang="ru" className={nunito.variable}>
       <body>
-        <Header />
-        
-        <Script id="schema-org-organization" type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            'name': 'Antiprofi',
-            'url': 'https://anti-profi.ru',
-            'logo': 'https://anti-profi.ru/images/logo.png',
-            'description': 'Агентство нестандартных услуг в Москве: актеры напрокат и выездной кейтеринг.',
-            'areaServed': {
-              '@type': 'City',
-              'name': 'Москва'
-            }
-          })
-        }} />
+        <NeuralBackground />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <Header />
+          
+          <Script id="schema-org-organization" type="application/ld+json" dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              'name': 'Antiprofi',
+              'url': 'https://anti-profi.ru',
+              'logo': 'https://anti-profi.ru/images/logo.png',
+              'description': 'Агентство нестандартных услуг в Москве: актеры напрокат и выездной кейтеринг.',
+              'areaServed': {
+                '@type': 'City',
+                'name': 'Москва'
+              }
+            })
+          }} />
 
-        <main className="main-content">
-          {children}
-        </main>
-        <Footer />
+          <main className="main-content">
+            {children}
+          </main>
+          <Footer />
+        </div>
         {process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID && (
           <>
             <Script id="yandex-metrika" strategy="afterInteractive" dangerouslySetInnerHTML={{
