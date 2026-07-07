@@ -15,8 +15,6 @@ interface ProductDescriptionStructured {
   sections: ProductDescriptionSection[];
 }
 
-const PIGODI_PRODUCT_ID = 2;
-
 export async function generateStaticParams() {
   return products.map((product) => ({
     id: product.id.toString(),
@@ -33,20 +31,20 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  if (product.id === PIGODI_PRODUCT_ID) {
+  const seo = (product as any).seo;
+
+  if (seo) {
     return {
-      title: 'Пигоди на заказ - Мастер пигоди и мантов | Antiprofi',
-      description: 'Пигоди, пьянсе и манты на заказ: домашняя корейская кухня и кейтеринг с приготовлением на вашей кухне по согласованному меню.',
-      keywords: ['пигоди', 'пигоди на заказ', 'пьянсе', 'пянсе', 'кейтеринг', 'домашние пигоди', 'корейская кухня', 'манты на заказ'],
+      title: seo.title,
+      description: seo.description,
+      keywords: seo.keywords,
       alternates: {
-        canonical: '/product/2',
+        canonical: `/product/${product.id}`,
       },
       openGraph: {
-        title: 'Пигоди на заказ - Мастер пигоди и мантов | Antiprofi',
-        description: 'Домашние пигоди, пьянсе и манты на заказ, а также кейтеринг в стиле корейской кухни.',
-        url: '/product/2',
+        ...seo.openGraph,
+        url: `/product/${product.id}`,
         images: [product.image],
-        type: 'article',
       },
     };
   }
@@ -90,20 +88,11 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
     redirect('/');
   }
 
-  const isPigodiPage = product.id === PIGODI_PRODUCT_ID;
-  const seoStructuredData = isPigodiPage
+  const seo = (product as any).seo;
+  const seoStructuredData = seo?.structuredData
     ? {
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: 'Пигоди на заказ',
-        description: 'Услуга приготовления домашних пигоди, пьянсе и мантов, а также кейтеринг на территории заказчика.',
-        serviceType: ['Пигоди на заказ', 'Пьянсе', 'Кейтеринг'],
-        areaServed: 'RU',
-        provider: {
-          '@type': 'Organization',
-          name: 'Antiprofi',
-        },
-        url: 'https://anti-profi.ru/product/2',
+        ...seo.structuredData,
+        url: `https://anti-profi.ru/product/${product.id}`,
       }
     : null;
 
