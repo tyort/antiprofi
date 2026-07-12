@@ -6,6 +6,7 @@ export async function GET() {
   const performerName = 'Antiprofi';
   const companyName = 'Агентство нестандартных услуг Antiprofi';
   const serviceSetId = '1';
+  const offerRegion = 'Москва и Московская область';
 
   const escapeXml = (value: string) =>
     value.replace(/[&<>'"]/g, (tag) => (
@@ -54,10 +55,11 @@ export async function GET() {
         <vendor>${escapeXml(companyName)}</vendor>
         <description>${escapeXml(serviceDescription)}</description>
         <set-ids>${serviceSetId}</set-ids>
-        <param name="Рейтинг">5.0</param>
-        <param name="Число отзывов">12</param>
-        <param name="Период">60 минут</param>
-        <param name="Конверсия">24 часа</param>
+        <param name="рейтинг">5.0</param>
+        <param name="число отзывов">12</param>
+        <param name="годы опыта">7</param>
+        <param name="регион">${escapeXml(offerRegion)}</param>
+        <param name="конверсия">24 часа</param>
       </offer>
 `;
   });
