@@ -55,11 +55,11 @@ export async function GET() {
         <vendor>${escapeXml(companyName)}</vendor>
         <description>${escapeXml(serviceDescription)}</description>
         <set-ids>${serviceSetId}</set-ids>
-        <param name="рейтинг">5.0</param>
-        <param name="число отзывов">12</param>
-        <param name="годы опыта">7</param>
-        <param name="регион">${escapeXml(offerRegion)}</param>
-        <param name="конверсия">24 часа</param>
+        <param name="Рейтинг">5.0</param>
+        <param name="Число отзывов">12</param>
+        <param name="Годы опыта">7</param>
+        <param name="Регион">${escapeXml(offerRegion)}</param>
+        <param name="Конверсия">1</param>
       </offer>
 `;
   });
