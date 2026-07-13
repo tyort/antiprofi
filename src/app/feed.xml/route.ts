@@ -6,6 +6,8 @@ export async function GET() {
   const performerName = 'Antiprofi';
   const companyName = 'Агентство нестандартных услуг Antiprofi';
   const serviceSetId = '1';
+  const serviceSetName = 'Услуги напрокат в Москве — Antiprofi';
+  const serviceSetUrl = `${siteUrl}/`;
   const offerRegion = 'Москва и Московская область';
 
   const escapeXml = (value: string) =>
@@ -32,6 +34,12 @@ export async function GET() {
       <category id="1">Услуги напрокат</category>
       <category id="2">Кейтеринг</category>
     </categories>
+    <sets>
+      <set id="${serviceSetId}">
+        <name>${escapeXml(serviceSetName)}</name>
+        <url>${serviceSetUrl}</url>
+      </set>
+    </sets>
     <offers>
 `;
 
