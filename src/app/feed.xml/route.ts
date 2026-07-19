@@ -3,7 +3,6 @@ import { products } from '../../data/products';
 export async function GET() {
   const siteUrl = 'https://anti-profi.ru';
   const currentDate = new Date().toISOString();
-  const performerName = 'Antiprofi';
   const companyName = 'Агентство нестандартных услуг Antiprofi';
   const serviceSetId = '1';
   const serviceSetName = 'Услуги напрокат в Москве — Antiprofi';
@@ -59,7 +58,7 @@ export async function GET() {
         <currencyId>RUB</currencyId>
         <categoryId>${categoryId}</categoryId>
         <picture>${siteUrl}${product.image}</picture>
-        <name>${escapeXml(performerName)}</name>
+        <name>${escapeXml(product.name)}</name>
         <vendor>${escapeXml(companyName)}</vendor>
         <description>${escapeXml(serviceDescription)}</description>
         <set-ids>${serviceSetId}</set-ids>
